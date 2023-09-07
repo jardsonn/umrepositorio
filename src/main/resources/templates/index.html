@@ -7,12 +7,17 @@
         <br>
         <br>
 
-        <div th:if="${current_user != null}">
-
-        </div>
 
         <div th:switch="${current_user != null}">
-            <div th:case="true">Realizar chamado, eu sou um <span th:text="${current_user.role}"></span></div>
+            <div th:case="true">
+                <div class="col-lg-6 mx-auto">
+                    <p class="lead mb-4">Tire suas dúvidas com nossos técnicos.</p>
+                    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                        <a type="button" class="btn btn-primary btn-lg px-4 gap-3" th:href="@{/realizar-call}">Realizar uma Chamada</a>
+
+                    </div>
+                </div>
+            </div>
             <div th:case="false">
                 <h1 class="display-5 fw-bold text-body-emphasis">Bem-vindo!</h1>
                 <div class="col-lg-6 mx-auto">
