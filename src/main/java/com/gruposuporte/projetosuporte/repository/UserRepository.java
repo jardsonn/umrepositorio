@@ -17,7 +17,6 @@ public interface UserRepository extends JpaRepository<User, UUID> {
 
     Boolean existsByEmail(String email);
 
-
     @Query("SELECT password FROM User WHERE username = :username")
     Optional<String> findUserPasswordByUsername(String username);
 

@@ -22,7 +22,6 @@ import java.util.Optional;
 
 @Controller
 public class AuthenticationController {
-
     private final UserRepository userRepository;
     private final PasswordEncoder encoder;
 
@@ -46,8 +45,11 @@ public class AuthenticationController {
         return "register-user";
     }
 
-    @GetMapping("/agent") // metodo para acessar tela de cadastro do agente
-    public String registerAgent() {
+    @GetMapping("/register-agent") // metodo para acessar tela de cadastro do agente
+    public String registerAgent(@ModelAttribute("user") SignupRequest signupRequest) {
+        if (securityService.isAuthenticated()) {
+            return "redirect:/";
+        }
         return "register-agent";
     }
 
@@ -95,13 +97,13 @@ public class AuthenticationController {
     public String registerAgent(@ModelAttribute("user") SignupRequest signupRequest, RedirectAttributes attributes, BindingResult bindingResult) {
         userValidator.validate(signupRequest, bindingResult);
         if (bindingResult.hasErrors()) {
-            return "register-user";
+            return "register-agent";
         }
 
         register(signupRequest, UserRole.AGENT);
 
         attributes.addFlashAttribute("success", "Você foi cadastrado com sucesso!");
-        return "redirect:/";
+        return "redirect:/login";
 
     }
 

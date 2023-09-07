@@ -70,7 +70,9 @@ public class SecurityConfig {
                                     mvc.pattern(HttpMethod.GET, "/register"),
                                     mvc.pattern(HttpMethod.GET, "/login"),
                                     mvc.pattern(HttpMethod.GET, "/home"),
-                                    mvc.pattern(HttpMethod.POST, "/register-user")
+                                    mvc.pattern(HttpMethod.POST, "/register-user"),
+                                    mvc.pattern(HttpMethod.GET, "/register-agent"),
+                                    mvc.pattern(HttpMethod.POST, "/register-agent")
                             ).permitAll()
                             .anyRequest()
                             .authenticated();
