@@ -5,7 +5,7 @@
             <div class="card shadow-sm">
                 <div class="card-body">
                     <h6 class="card-title font-weight-bold text-normal"><strong>Iniciando um chamado</strong></h6>
-                    <form>
+                    <form method="post"th:action="@{/create-call}">
                         <div class="form-group">
                             <label for="problem-title" class="text-normal font-weight-normal mb-0">Título do problema</label>
                             <input
