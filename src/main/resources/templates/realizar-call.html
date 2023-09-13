@@ -1,21 +1,40 @@
 <div th:replace="shared/header"></div>
-
-    <div class="justify-content-center align-items-center row">
-        <div class="meuCard">
-            <h4 class="font-weight-bold"> Iniciando uma Chamada </h4>
-                <form>
-                    <div class="form-group">
-                        <p class="font-weight-normal "><b> Título do Problema </b></p>
-                        <input type="text" class="form-control form-control-user" id="title"  name="title" placeholder="Nome do Titulo">
-                    </div>
-                    <div class="form-group">
-                        <p class="font-weight-normal"> <b>Descrição do Problema</b></p>
-                        <input type="text" class="form-control form-control-user" id="description"  name="description" placeholder="Descrição">
-                    </div>
-                </form>
-
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h6 class="card-title font-weight-bold text-normal"><strong>Iniciando um chamado</strong></h6>
+                    <form>
+                        <div class="form-group">
+                            <label for="problem-title" class="text-normal font-weight-normal mb-0">Título do problema</label>
+                            <input
+                                    type="text"
+                                    class="form-control form-control-sm bg-input-call"
+                                    id="problem-title"
+                                    placeholder="Digite o título do problema"
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="problem-description" class="text-normal font-weight-normal mb-0"> Descrição do
+                                problema</label>
+                            <textarea
+                                    class="form-control form-control-sm bg-input-call"
+                                    id="problem-description"
+                                    rows="5"
+                                    placeholder="Por favor, explique o problema que está enfrentando de maneira clara e, se possível, forneça exemplos para ilustrar a situação."
+                            ></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary text-uppercase btn-sm rounded-pill">
+                                <small>FAZER CHAMAMADO</small>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-
     </div>
+</div>
 
 <div th:replace="shared/footer"></div>
