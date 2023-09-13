@@ -18,12 +18,17 @@ public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
+    @Column(length = 1000)
     private String text;
     private Date datetime;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "userId")
     private User user;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "callId")
+    private Call call;
 
     public Message(String text, Date datetime) {
         this.text = text;
