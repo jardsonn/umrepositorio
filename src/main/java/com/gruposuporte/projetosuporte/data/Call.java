@@ -37,5 +37,11 @@ public class Call {
     @JoinColumn(name = "agentId")
     private List<User> agent;
 
-
+    public Call(Date data, String title, boolean status, String description, User costumer) {
+        this.data = data;
+        this.title = title;
+        this.status = status;
+        this.description = description;
+        this.costumer = costumer;
+    }
 }
