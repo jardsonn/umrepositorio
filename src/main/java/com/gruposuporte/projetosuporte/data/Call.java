@@ -32,7 +32,6 @@ public class Call {
     private User costumer;
 
 
-
     @ManyToMany
     @JoinColumn(name = "agentId")
     private List<User> agent;
