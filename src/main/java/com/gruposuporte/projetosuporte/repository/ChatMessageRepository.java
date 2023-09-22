@@ -9,7 +9,8 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public interface ChatMessageRepository  extends JpaRepository<Message, UUID>{
+public interface ChatMessageRepository extends JpaRepository<Message, UUID> {
 
-    List<Message> getMessageByCall(Call call);
+    List<Message> getMessagesByCall(Call call);
+
 }

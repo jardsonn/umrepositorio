@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -20,19 +21,26 @@ public class Call {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     private Date data;
-    @Column(length = 60)
+
+    @Column(length = 300)
     private String title;
+
     private boolean status;
-    @Column(length = 700)
+
+    @Column(length = 780)
     private String description;
+
     @ManyToOne
     @JoinColumn(name = "costumerId")
     private User costumer;
 
-
-    @ManyToMany
-    @JoinColumn(name = "agentId")
-    private List<User> agent;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "call_agent",
+            joinColumns = @JoinColumn(name = "call_id"),
+            inverseJoinColumns = @JoinColumn(name = "agent_id")
+    )
+    private List<User> agents;
 
     public Call(Date data, String title, boolean status, String description, User costumer) {
         this.data = data;
@@ -40,5 +48,6 @@ public class Call {
         this.status = status;
         this.description = description;
         this.costumer = costumer;
+//        this.agents = new ArrayList<>();
     }
 }

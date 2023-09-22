@@ -6,8 +6,8 @@ import com.gruposuporte.projetosuporte.data.UserRole;
 import com.gruposuporte.projetosuporte.dto.LoginRequest;
 import com.gruposuporte.projetosuporte.dto.SignupRequest;
 import com.gruposuporte.projetosuporte.repository.UserRepository;
-import com.gruposuporte.projetosuporte.security.UserValidator;
 import com.gruposuporte.projetosuporte.services.SecurityService;
+import com.gruposuporte.projetosuporte.utils.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -18,12 +18,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.Optional;
-
 @Controller
 public class AuthenticationController {
     private final UserRepository userRepository;
     private final PasswordEncoder encoder;
+
     private final UserValidator userValidator;
 
     private SecurityService securityService;
@@ -67,16 +66,6 @@ public class AuthenticationController {
         return "login";
     }
 
-    public boolean isPasswordValid(String username, String providedPassword) {
-        Optional<String> storedPassword = userRepository.findUserPasswordByUsername(username);
-        if (storedPassword.isPresent()) {
-            String encodedPassword = storedPassword.get();
-            return encoder.matches(providedPassword, encodedPassword);
-        }
-
-        return false;
-    }
-
 
     @PostMapping("/register-user")
     public String registerUser(@ModelAttribute("user") SignupRequest signupRequest, RedirectAttributes attributes, BindingResult bindingResult) {
@@ -110,7 +99,6 @@ public class AuthenticationController {
         User user = new User(signupRequest.name(), encoder.encode(signupRequest.password()), role, signupRequest.email(), signupRequest.username());
         userRepository.save(user);
         securityService.autoLogin(signupRequest.username(), signupRequest.password());
-        userRepository.save(user);
     }
 
 }
