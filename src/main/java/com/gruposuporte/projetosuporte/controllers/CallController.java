@@ -10,6 +10,7 @@ import com.gruposuporte.projetosuporte.repository.ChatMessageRepository;
 import com.gruposuporte.projetosuporte.repository.UserRepository;
 import com.gruposuporte.projetosuporte.utils.CreateCallValidator;
 import com.gruposuporte.projetosuporte.utils.UserUtils;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -101,5 +102,17 @@ public class CallController {
         return "redirect:/support-chat/" + call.getId();
     }
 
+    @Transactional
+    @PostMapping("/closeCall/{callId}")
+    public String closeCall(@PathVariable("callId") UUID uuid) {
+        var call = callRepository.findById(uuid);
+        var user = userUtils.getCurrentUser();
+        if (call.isPresent() && user != null && user.getRole() == UserRole.AGENT) {
+
+            callRepository.closeCall(call.get().getId());
+            return "redirect:/support-chat/" + call.get().getId();
+        }
+        return "/login";
+    }
 
 }

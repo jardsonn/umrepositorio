@@ -25,10 +25,10 @@
                             <p class="card-text"><small class="text-muted" th:text="${createdDate}"></small></p>
                             <div class="d-flex justify-content-end">
                                 <button type="button" class="btn btn-outline-secondary rounded-pill mr-4"
-                                        onclick="hideDescription()"><small>OCULTAR
-                                    DESCRIÇÃO</small></button>
-                                <button type="button" class="btn btn-outline-danger rounded-pill"><small>FECHAR
-                                    CHAMDO</small></button>
+                                        onclick="hideDescription()"><small>OCULTAR DESCRIÇÃO</small></button>
+                                <form method="post"th:action="@{'/closeCall/'+${currentCall.id}}">
+                                    <button th:if="${currentUser.role.name.equals('AGENT')} " type="submit" class="btn btn-outline-danger rounded-pill"><small>FECHAR CHAMADO</small></button>
+                                </form>
                             </div>
                         </div>
                     </div>
