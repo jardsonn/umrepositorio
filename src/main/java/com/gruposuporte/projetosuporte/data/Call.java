@@ -20,13 +20,11 @@ public class Call {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     private Date data;
-
     @Column(length = 60)
     private String title;
     private boolean status;
     @Column(length = 700)
     private String description;
-
     @ManyToOne
     @JoinColumn(name = "costumerId")
     private User costumer;

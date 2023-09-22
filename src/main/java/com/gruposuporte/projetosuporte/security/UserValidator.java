@@ -14,7 +14,6 @@ import java.util.regex.Pattern;
 @Component
 public class UserValidator implements Validator {
 
-
     private final UserRepository userRepository;
 
     @Autowired

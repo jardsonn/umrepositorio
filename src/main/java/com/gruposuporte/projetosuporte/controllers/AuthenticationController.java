@@ -24,7 +24,6 @@ import java.util.Optional;
 public class AuthenticationController {
     private final UserRepository userRepository;
     private final PasswordEncoder encoder;
-
     private final UserValidator userValidator;
 
     private SecurityService securityService;
